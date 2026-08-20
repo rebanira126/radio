@@ -4,343 +4,443 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex">
-    <title>ラブライブ！関連 ラジオ番組リンク集</title>
+    <title>ラブライブ！＆声優 関連ポータル</title>
     <style>
-        /* 全体基本スタイル */
-        * {
-            box-sizing: border-box;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            margin: 0;
-            padding: 15px;
-            line-height: 1.5;
-        }
-
-        .container {
-            max-width: 850px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-
-        h1 {
-            text-align: center;
-            color: #ff69b4;
-            margin-bottom: 25px;
-            border-bottom: 3px solid #ff69b4;
-            padding-bottom: 8px;
-            font-size: 1.5em;
-        }
-
-        h2 {
-            color: #4a90e2;
-            margin-top: 25px;
-            border-left: 5px solid #4a90e2;
-            padding-left: 10px;
-            margin-bottom: 12px;
-            font-size: 1.2em;
-        }
-
-        /* 一覧表テーブル（PC・スマートフォン共通で表形式を維持） */
-        .table-container {
-            width: 100%;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            margin-bottom: 25px;
-        }
-
-        .radio-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.92em;
-        }
-
-        .radio-table th, .radio-table td {
-            padding: 10px 8px;
-            text-align: left;
-            border-bottom: 1px solid #e0e0e0;
-            vertical-align: middle;
-        }
-
-        .radio-table th {
-            background-color: #e6f7ff;
-            color: #1a5276;
-            font-weight: bold;
-            white-space: nowrap;
-        }
-
-        .radio-table tr:hover {
-            background-color: #fff8fb;
-        }
-
-        .col-target {
-            font-weight: bold;
-            color: #2c3e50;
-            width: 22%;
-        }
-
-        .col-program {
-            color: #333;
-            width: 56%;
-        }
-
-        .col-link {
-            text-align: center;
-            width: 22%;
-            white-space: nowrap;
-        }
-
-        /* リンクボタン */
-        .link-button {
-            display: inline-block;
-            padding: 6px 12px;
-            background-color: #ff69b4;
-            color: #ffffff;
-            text-decoration: none;
-            border-radius: 6px;
-            font-size: 0.88em;
-            font-weight: bold;
-            text-align: center;
-            transition: background-color 0.2s;
-        }
-
-        .link-button:hover {
-            background-color: #e55a9e;
-            text-decoration: none;
-        }
-
-        /* スマートフォン向け最適化（一覧表形式を維持） */
+        * { box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; background-color: #f4f4f9; color: #333; margin: 0; padding: 15px; line-height: 1.5; }
+        .container { max-width: 880px; margin: 0 auto; background-color: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        h1 { text-align: center; color: #ff69b4; margin-bottom: 20px; border-bottom: 3px solid #ff69b4; padding-bottom: 8px; font-size: 1.5em; }
+        .tab-nav { display: flex; gap: 8px; border-bottom: 2px solid #e0e0e0; margin-bottom: 15px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        .tab-btn { flex: 1; min-width: 100px; padding: 10px 14px; border: none; background-color: #f0f0f5; color: #555; font-size: 0.95em; font-weight: bold; border-radius: 8px 8px 0 0; cursor: pointer; transition: all 0.2s; text-align: center; white-space: nowrap; }
+        .tab-btn:hover { background-color: #fce4ec; color: #ff69b4; }
+        .tab-btn.active { background-color: #ff69b4; color: #ffffff; box-shadow: 0 -2px 6px rgba(255,105,180,0.2); }
+        .filter-bar { background-color: #fdf2f7; border: 1px solid #f8bbd0; padding: 10px 15px; border-radius: 8px; margin-bottom: 18px; display: flex; align-items: center; justify-content: flex-start; }
+        .filter-label { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.92em; font-weight: bold; color: #d81b60; user-select: none; }
+        .filter-label input[type="checkbox"] { width: 18px; height: 18px; accent-color: #ff69b4; cursor: pointer; }
+        .tab-pane { display: none; }
+        .tab-pane.active { display: block; animation: fadeIn 0.25s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: translateY(0); } }
+        h2 { color: #4a90e2; margin-top: 22px; border-left: 5px solid #4a90e2; padding-left: 10px; margin-bottom: 10px; font-size: 1.15em; }
+        .data-table { width: 100%; border-collapse: collapse; font-size: 0.92em; margin-bottom: 22px; }
+        .data-table th, .data-table td { padding: 10px 8px; text-align: left; border-bottom: 1px solid #e0e0e0; vertical-align: middle; }
+        .data-table th { background-color: #e6f7ff; color: #1a5276; font-weight: bold; white-space: nowrap; }
+        .data-table tr:hover { background-color: #fff8fb; }
+        .col-target { font-weight: bold; color: #2c3e50; width: 22%; }
+        .col-name { color: #333; width: 44%; word-break: break-word; }
+        .col-date { width: 16%; white-space: nowrap; text-align: center; font-size: 0.9em; }
+        .col-link { text-align: center; width: 18%; white-space: nowrap; }
+        .link-button { display: inline-block; padding: 6px 12px; background-color: #ff69b4; color: #ffffff; text-decoration: none; border-radius: 6px; font-size: 0.88em; font-weight: bold; text-align: center; transition: background-color 0.2s; }
+        .link-button:hover { background-color: #e55a9e; text-decoration: none; }
         @media screen and (max-width: 600px) {
-            body {
-                padding: 8px;
-            }
-            .container {
-                padding: 12px 8px;
-                border-radius: 8px;
-            }
-            h1 {
-                font-size: 1.25em;
-                margin-bottom: 15px;
-            }
-            h2 {
-                font-size: 1.05em;
-                margin-top: 18px;
-                margin-bottom: 10px;
-            }
-            .radio-table {
-                font-size: 0.82em;
-            }
-            .radio-table th, .radio-table td {
-                padding: 8px 4px;
-            }
-            .col-target {
-                width: 24%;
-            }
-            .col-program {
-                width: 52%;
-                word-break: break-word;
-            }
-            .col-link {
-                width: 24%;
-            }
-            .link-button {
-                padding: 4px 8px;
-                font-size: 0.8em;
-                border-radius: 4px;
-            }
+            body { padding: 8px; }
+            .container { padding: 12px 8px; border-radius: 8px; }
+            h1 { font-size: 1.2em; margin-bottom: 12px; }
+            .tab-btn { padding: 8px 10px; font-size: 0.85em; }
+            .filter-bar { padding: 8px 10px; margin-bottom: 14px; }
+            .filter-label { font-size: 0.85em; }
+            h2 { font-size: 1.0em; margin-top: 15px; margin-bottom: 8px; }
+            .data-table { font-size: 0.82em; }
+            .data-table th, .data-table td { padding: 8px 4px; }
+            .col-target { width: 24%; }
+            .col-name { width: 42%; }
+            .col-date { width: 17%; font-size: 0.8em; }
+            .col-link { width: 17%; }
+            .link-button { padding: 4px 6px; font-size: 0.78em; border-radius: 4px; }
         }
     </style>
+    <script>
+        function openTab(evt, tabId) {
+            var tabPanes = document.querySelectorAll(".tab-pane");
+            tabPanes.forEach(function(pane) { pane.classList.remove("active"); });
+            var tabBtns = document.querySelectorAll(".tab-btn");
+            tabBtns.forEach(function(btn) { btn.classList.remove("active"); });
+            var targetPane = document.getElementById(tabId);
+            if (targetPane) { targetPane.classList.add("active"); }
+            if (evt && evt.currentTarget) { evt.currentTarget.classList.add("active"); }
+        }
+
+        function toggleFreeRadio(isFreeOnly) {
+            var rows = document.querySelectorAll(".radio-row");
+            rows.forEach(function(row) {
+                var isFree = row.getAttribute("data-is-free") === "true";
+                var linkEl = row.querySelector(".col-link a");
+                if (isFreeOnly) {
+                    if (isFree) {
+                        row.style.display = "";
+                        if (linkEl) {
+                            linkEl.href = row.getAttribute("data-free-url");
+                            linkEl.textContent = row.getAttribute("data-free-label");
+                        }
+                    } else {
+                        row.style.display = "none";
+                    }
+                } else {
+                    row.style.display = "";
+                    if (linkEl) {
+                        linkEl.href = row.getAttribute("data-all-url");
+                        linkEl.textContent = row.getAttribute("data-all-label");
+                    }
+                }
+            });
+
+            var sections = document.querySelectorAll("#tab-radio .category-section");
+            sections.forEach(function(sec) {
+                var secRows = sec.querySelectorAll(".radio-row");
+                var hasVisible = false;
+                secRows.forEach(function(r) {
+                    if (r.style.display !== "none") { hasVisible = true; }
+                });
+                sec.style.display = hasVisible ? "" : "none";
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var tabBtns = document.querySelectorAll(".tab-btn");
+            tabBtns.forEach(function(btn) {
+                btn.addEventListener("click", function(e) {
+                    var tabId = btn.getAttribute("data-tab");
+                    if (tabId) { openTab(e, tabId); }
+                });
+            });
+
+            var chk = document.getElementById("chk-free-only");
+            if (chk) { toggleFreeRadio(chk.checked); }
+        });
+    </script>
 </head>
 <body>
-
 <div class="container">
-    <h1>🎀 ラブライブ！&キャスト ラジオ番組リンク集 🎧</h1>
+    <h1>🎀 ラブライブ！＆声優 関連ポータル 🎧</h1>
 
-    <h2>🎤 グループ・ユニット番組</h2>
-    <div class="table-container">
-        <table class="radio-table">
-            <thead>
-                <tr>
-                    <th class="col-target">コンテンツ</th>
-                    <th class="col-program">番組名</th>
-                    <th class="col-link">リンク</th>
+    <div class="tab-nav">
+        <button class="tab-btn active" data-tab="tab-radio" onclick="openTab(event, 'tab-radio')">📻 ラジオ</button>
+        <button class="tab-btn" data-tab="tab-program" onclick="openTab(event, 'tab-program')">📺 個別番組</button>
+        <button class="tab-btn" data-tab="tab-fanclub" onclick="openTab(event, 'tab-fanclub')">🌟 ファンクラブ</button>
+    </div>
+
+    <!-- ラジオタブ -->
+    <div id="tab-radio" class="tab-pane active">
+        <div class="filter-bar">
+            <label class="filter-label">
+                <input type="checkbox" id="chk-free-only" checked onchange="toggleFreeRadio(this.checked)">
+                <span>無料で聴ける番組のみ表示</span>
+            </label>
+        </div>
+        <div class="category-section" data-cat="グループ・ユニット">
+            <h2>グループ・ユニット</h2>
+            <table class="data-table radio-data-table">
+                <thead>
+                    <tr><th class="col-target">対象</th><th class="col-name">番組名</th><th class="col-date">最終更新日</th><th class="col-link">リンク</th></tr>
+                </thead>
+                <tbody>
+                <tr class="radio-row" data-is-free="true" data-free-url="https://www.onsen.ag/program/llss/" data-free-label="音泉へ" data-all-url="https://www.onsen.ag/program/llss/" data-all-label="音泉へ">
+                    <td class="col-target">Aqours</td><td class="col-name">Aqours浦の星女学院RADIO!!!</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/19</span></td><td class="col-link"><a href="https://www.onsen.ag/program/llss/" target="_blank" class="link-button">音泉へ</a></td>
                 </tr>
-            </thead>
+                <tr class="radio-row" data-is-free="true" data-free-url="https://www.youtube.com/playlist?list=PLYpy4kJmEo77cXVsDfzQ6g0ON9WYm4KuA" data-free-label="YouTubeへ" data-all-url="https://www.youtube.com/playlist?list=PLYpy4kJmEo77cXVsDfzQ6g0ON9WYm4KuA" data-all-label="YouTubeへ">
+                    <td class="col-target">Liella!</td><td class="col-name">ラブライブ！スーパースター!! Liella!ラジオ</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/18</span></td><td class="col-link"><a href="https://www.youtube.com/playlist?list=PLYpy4kJmEo77cXVsDfzQ6g0ON9WYm4KuA" target="_blank" class="link-button">YouTubeへ</a></td>
+                </tr>
+                <tr class="radio-row" data-is-free="true" data-free-url="https://podcastqr.joqr.co.jp/programs/spasta" data-free-label="Podcastへ" data-all-url="https://podcastqr.joqr.co.jp/programs/spasta" data-all-label="Podcastへ">
+                    <td class="col-target">Liella!</td><td class="col-name">ラブライブ！スーパースター!! Liella!のスパスタラジオ</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/20</span></td><td class="col-link"><a href="https://podcastqr.joqr.co.jp/programs/spasta" target="_blank" class="link-button">Podcastへ</a></td>
+                </tr>
+                <tr class="radio-row" data-is-free="true" data-free-url="https://www.youtube.com/playlist?list=PLu7E7HFun3xCnJmVYde_I89F4bSZVd6iM" data-free-label="YouTubeへ" data-all-url="https://www.youtube.com/playlist?list=PLu7E7HFun3xCnJmVYde_I89F4bSZVd6iM" data-all-label="YouTubeへ">
+                    <td class="col-target">蓮ノ空</td><td class="col-name">きまっし!!みらぱ！の部屋ラジオ</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/15</span></td><td class="col-link"><a href="https://www.youtube.com/playlist?list=PLu7E7HFun3xCnJmVYde_I89F4bSZVd6iM" target="_blank" class="link-button">YouTubeへ</a></td>
+                </tr>
+                <tr class="radio-row" data-is-free="true" data-free-url="https://www.youtube.com/playlist?list=PL-3jtV2TsyS2gtdveKjU8t3Isyp4aZMqT" data-free-label="YouTubeへ" data-all-url="https://www.youtube.com/playlist?list=PL-3jtV2TsyS2gtdveKjU8t3Isyp4aZMqT" data-all-label="YouTubeへ">
+                    <td class="col-target">イキヅライブ!</td><td class="col-name">知らんらんらじお！</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/19</span></td><td class="col-link"><a href="https://www.youtube.com/playlist?list=PL-3jtV2TsyS2gtdveKjU8t3Isyp4aZMqT" target="_blank" class="link-button">YouTubeへ</a></td>
+                </tr>
+                <tr class="radio-row" data-is-free="true" data-free-url="https://radiko.jp/podcast/channels/3b8e4a21-8c11-475d-b2ae-c6e1fd403924" data-free-label="radikoへ" data-all-url="https://radiko.jp/podcast/channels/3b8e4a21-8c11-475d-b2ae-c6e1fd403924" data-all-label="radikoへ">
+                    <td class="col-target">AiScream</td><td class="col-name">AiScReamのとろけるタイム♡♡♡</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/14</span></td><td class="col-link"><a href="https://radiko.jp/podcast/channels/3b8e4a21-8c11-475d-b2ae-c6e1fd403924" target="_blank" class="link-button">radikoへ</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="category-section" data-cat="Liella!">
+            <h2>Liella!</h2>
+            <table class="data-table radio-data-table">
+                <thead>
+                    <tr><th class="col-target">対象</th><th class="col-name">番組名</th><th class="col-date">最終更新日</th><th class="col-link">リンク</th></tr>
+                </thead>
+                <tbody>
+                <tr class="radio-row" data-is-free="true" data-free-url="https://radiko.jp/r_seasons/10022491" data-free-label="radikoへ" data-all-url="https://radiko.jp/r_seasons/10022491" data-all-label="radikoへ">
+                    <td class="col-target">伊達さゆり</td><td class="col-name">伊達さゆりの 伊達にラジオやってません！！！</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/19</span></td><td class="col-link"><a href="https://radiko.jp/r_seasons/10022491" target="_blank" class="link-button">radikoへ</a></td>
+                </tr>
+                <tr class="radio-row" data-is-free="false" data-free-url="" data-free-label="" data-all-url="https://audee-membership.jp/liyuu/" data-all-label="AuDeeへ">
+                    <td class="col-target">Liyuu</td><td class="col-name">Liyuuのはつらじ にゅ！</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/20</span></td><td class="col-link"><a href="https://audee-membership.jp/liyuu/" target="_blank" class="link-button">AuDeeへ</a></td>
+                </tr>
+                <tr class="radio-row" data-is-free="true" data-free-url="https://www.onsen.ag/program/nako" data-free-label="音泉へ" data-all-url="https://www.onsen.ag/program/nako" data-all-label="音泉へ">
+                    <td class="col-target">岬なこ</td><td class="col-name">岬なこのそんなこんなこラジオ！</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/20</span></td><td class="col-link"><a href="https://www.onsen.ag/program/nako" target="_blank" class="link-button">音泉へ</a></td>
+                </tr>
+                <tr class="radio-row" data-is-free="true" data-free-url="https://www.onsen.ag/program/nagisa-sa" data-free-label="音泉へ" data-all-url="https://www.onsen.ag/program/nagisa-sa" data-all-label="音泉へ">
+                    <td class="col-target">青山なぎさ</td><td class="col-name">青山なぎさのさ！</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/20</span></td><td class="col-link"><a href="https://www.onsen.ag/program/nagisa-sa" target="_blank" class="link-button">音泉へ</a></td>
+                </tr>
+                <tr class="radio-row" data-is-free="true" data-free-url="https://www.youtube.com/playlist?list=PLlP-aKKe1ZXO_YgXz6dn0gO3P38lN6HIs" data-free-label="YouTubeへ" data-all-url="https://www.youtube.com/playlist?list=PLlP-aKKe1ZXO_YgXz6dn0gO3P38lN6HIs" data-all-label="YouTubeへ">
+                    <td class="col-target">鈴原希実</td><td class="col-name">鈴原希実の明日はなんしちょっと？</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/14</span></td><td class="col-link"><a href="https://www.youtube.com/playlist?list=PLlP-aKKe1ZXO_YgXz6dn0gO3P38lN6HIs" target="_blank" class="link-button">YouTubeへ</a></td>
+                </tr>
+                <tr class="radio-row" data-is-free="true" data-free-url="https://www.youtube.com/@JOQR_EXTEND/videos" data-free-label="YouTubeへ" data-all-url="https://www.youtube.com/@JOQR_EXTEND/videos" data-all-label="YouTubeへ">
+                    <td class="col-target">薮島朱音</td><td class="col-name">薮島朱音の強くなるラジオ</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/19</span></td><td class="col-link"><a href="https://www.youtube.com/@JOQR_EXTEND/videos" target="_blank" class="link-button">YouTubeへ</a></td>
+                </tr>
+                <tr class="radio-row" data-is-free="false" data-free-url="" data-free-label="" data-all-url="https://audee-membership.jp/okuma-wakana" data-all-label="AuDeeへ">
+                    <td class="col-target">大熊和奏</td><td class="col-name">大熊和奏 朝のささやき</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/17</span></td><td class="col-link"><a href="https://audee-membership.jp/okuma-wakana" target="_blank" class="link-button">AuDeeへ</a></td>
+                </tr>
+                <tr class="radio-row" data-is-free="false" data-free-url="" data-free-label="" data-all-url="https://audee-membership.jp/emori-aya" data-all-label="AuDeeへ">
+                    <td class="col-target">絵森彩</td><td class="col-name">えもりん家によっちゃばれ！</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/18</span></td><td class="col-link"><a href="https://audee-membership.jp/emori-aya" target="_blank" class="link-button">AuDeeへ</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="category-section" data-cat="蓮ノ空">
+            <h2>蓮ノ空</h2>
+            <table class="data-table radio-data-table">
+                <thead>
+                    <tr><th class="col-target">対象</th><th class="col-name">番組名</th><th class="col-date">最終更新日</th><th class="col-link">リンク</th></tr>
+                </thead>
+                <tbody>
+                <tr class="radio-row" data-is-free="true" data-free-url="https://fcchannel.re-tapirs.com/fc_channel/nirebiyori/?mode=movie" data-free-label="チャンネルへ" data-all-url="https://fcchannel.re-tapirs.com/fc_channel/nirebiyori/?mode=movie" data-all-label="チャンネルへ">
+                    <td class="col-target">楡井希実</td><td class="col-name">にれ日和THEATER</td><td class="col-date"><span class="date-normal" style="color: #666;">2026/08/08</span></td><td class="col-link"><a href="https://fcchannel.re-tapirs.com/fc_channel/nirebiyori/?mode=movie" target="_blank" class="link-button">チャンネルへ</a></td>
+                </tr>
+                <tr class="radio-row" data-is-free="true" data-free-url="https://radiko.jp/r_seasons/48642" data-free-label="radikoへ" data-all-url="https://radiko.jp/r_seasons/48642" data-all-label="radikoへ">
+                    <td class="col-target">野中ここな</td><td class="col-name">野中ここなのノナカの野望</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/17</span></td><td class="col-link"><a href="https://radiko.jp/r_seasons/48642" target="_blank" class="link-button">radikoへ</a></td>
+                </tr>
+                <tr class="radio-row" data-is-free="false" data-free-url="" data-free-label="" data-all-url="https://audee-membership.jp/hanamiya-nina" data-all-label="AuDeeへ">
+                    <td class="col-target">花宮初奈</td><td class="col-name">217find!</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/18</span></td><td class="col-link"><a href="https://audee-membership.jp/hanamiya-nina" target="_blank" class="link-button">AuDeeへ</a></td>
+                </tr>
+                <tr class="radio-row" data-is-free="true" data-free-url="https://www.onsen.ag/program/ktk" data-free-label="音泉へ" data-all-url="https://www.onsen.ag/program/ktk" data-all-label="音泉へ">
+                    <td class="col-target">佐々木琴子</td><td class="col-name">佐々木琴子のここだけのこと</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/19</span></td><td class="col-link"><a href="https://www.onsen.ag/program/ktk" target="_blank" class="link-button">音泉へ</a></td>
+                </tr>
+                <tr class="radio-row" data-is-free="true" data-free-url="https://www.onsen.ag/program/kona" data-free-label="音泉へ" data-all-url="https://www.onsen.ag/program/kona" data-all-label="音泉へ">
+                    <td class="col-target">月音こな</td><td class="col-name">月音こなのつきねびより</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/17</span></td><td class="col-link"><a href="https://www.onsen.ag/program/kona" target="_blank" class="link-button">音泉へ</a></td>
+                </tr>
+                <tr class="radio-row" data-is-free="true" data-free-url="https://hibiki-radio.jp/description/khsn/detail" data-free-label="響へ" data-all-url="https://hibiki-radio.jp/description/khsn/detail" data-all-label="響へ">
+                    <td class="col-target">櫻井陽菜</td><td class="col-name">かのんとひなの成長日記</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/18</span></td><td class="col-link"><a href="https://hibiki-radio.jp/description/khsn/detail" target="_blank" class="link-button">響へ</a></td>
+                </tr>
+                <tr class="radio-row" data-is-free="true" data-free-url="https://radiko.jp/r_seasons/10029223" data-free-label="radikoへ" data-all-url="https://radiko.jp/r_seasons/10029223" data-all-label="radikoへ">
+                    <td class="col-target">葉山風花</td><td class="col-name">葉山風花のHappy Lucky!</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/17</span></td><td class="col-link"><a href="https://radiko.jp/r_seasons/10029223" target="_blank" class="link-button">radikoへ</a></td>
+                </tr>
+                <tr class="radio-row" data-is-free="true" data-free-url="https://radiko.jp/r_seasons/52910" data-free-label="radikoへ" data-all-url="https://radiko.jp/r_seasons/52910" data-all-label="radikoへ">
+                    <td class="col-target">来栖りん</td><td class="col-name">来栖りんの異議あり！</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/18</span></td><td class="col-link"><a href="https://radiko.jp/r_seasons/52910" target="_blank" class="link-button">radikoへ</a></td>
+                </tr>
+                <tr class="radio-row" data-is-free="true" data-free-url="https://radiko.jp/r_seasons/10031028" data-free-label="radikoへ" data-all-url="https://radiko.jp/r_seasons/10031028" data-all-label="radikoへ">
+                    <td class="col-target">三宅美羽</td><td class="col-name">三宅美羽のみみぺこ</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/20</span></td><td class="col-link"><a href="https://radiko.jp/r_seasons/10031028" target="_blank" class="link-button">radikoへ</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="category-section" data-cat="μ's">
+            <h2>μ's</h2>
+            <table class="data-table radio-data-table">
+                <thead>
+                    <tr><th class="col-target">対象</th><th class="col-name">番組名</th><th class="col-date">最終更新日</th><th class="col-link">リンク</th></tr>
+                </thead>
+                <tbody>
+                <tr class="radio-row" data-is-free="true" data-free-url="https://hibiki-radio.jp/description/tsunradi/detail" data-free-label="響へ" data-all-url="https://hibiki-radio.jp/description/tsunradi/detail" data-all-label="響へ">
+                    <td class="col-target">新田恵海</td><td class="col-name">新田恵海のえみゅーじっく♪ふらっぐ☆</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/19</span></td><td class="col-link"><a href="https://hibiki-radio.jp/description/tsunradi/detail" target="_blank" class="link-button">響へ</a></td>
+                </tr>
+                <tr class="radio-row" data-is-free="true" data-free-url="https://radiko.jp/r_seasons/10030928" data-free-label="radikoへ" data-all-url="https://radiko.jp/r_seasons/10030928" data-all-label="radikoへ">
+                    <td class="col-target">南條愛乃</td><td class="col-name">南條愛乃とおしゃべりな夜</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/14</span></td><td class="col-link"><a href="https://radiko.jp/r_seasons/10030928" target="_blank" class="link-button">radikoへ</a></td>
+                </tr>
+                <tr class="radio-row" data-is-free="true" data-free-url="https://radiko.jp/r_seasons/10002758" data-free-label="radikoへ" data-all-url="https://radiko.jp/r_seasons/10002758" data-all-label="radikoへ">
+                    <td class="col-target">内田彩</td><td class="col-name">うちださんのおうっちー</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/14</span></td><td class="col-link"><a href="https://radiko.jp/r_seasons/10002758" target="_blank" class="link-button">radikoへ</a></td>
+                </tr>
+                <tr class="radio-row" data-is-free="false" data-free-url="" data-free-label="" data-all-url="https://note.com/tokinyan/n/n2127ca939f58" data-all-label="noteへ">
+                    <td class="col-target">徳井青空</td><td class="col-name">ぐーもる荘内ラジオ</td><td class="col-date"><span class="date-normal" style="color: #666;">2026/08/10</span></td><td class="col-link"><a href="https://note.com/tokinyan/n/n2127ca939f58" target="_blank" class="link-button">noteへ</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="category-section" data-cat="Aqours">
+            <h2>Aqours</h2>
+            <table class="data-table radio-data-table">
+                <thead>
+                    <tr><th class="col-target">対象</th><th class="col-name">番組名</th><th class="col-date">最終更新日</th><th class="col-link">リンク</th></tr>
+                </thead>
+                <tbody>
+                <tr class="radio-row" data-is-free="true" data-free-url="https://www.mbs1179.com/yaru/" data-free-label="番組HPへ" data-all-url="https://www.mbs1179.com/yaru/" data-all-label="番組HPへ">
+                    <td class="col-target">伊波杏樹</td><td class="col-name">アッパレ伊波！1名様やってまーす</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/17</span></td><td class="col-link"><a href="https://www.mbs1179.com/yaru/" target="_blank" class="link-button">番組HPへ</a></td>
+                </tr>
+                <tr class="radio-row" data-is-free="false" data-free-url="" data-free-label="" data-all-url="https://audee-membership.jp/rihoko-aida" data-all-label="AuDeeへ">
+                    <td class="col-target">逢田梨香子</td><td class="col-name">逢田梨香子のORDINARY RADIO</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/19</span></td><td class="col-link"><a href="https://audee-membership.jp/rihoko-aida" target="_blank" class="link-button">AuDeeへ</a></td>
+                </tr>
+                <tr class="radio-row" data-is-free="true" data-free-url="https://www.youtube.com/watch?v=Il4dx-uo-4U&list=PLBYsKLTtyN0_5LjOgvZqG1ZekCQIDGglm" data-free-label="YouTubeへ" data-all-url="https://www.youtube.com/watch?v=Il4dx-uo-4U&list=PLBYsKLTtyN0_5LjOgvZqG1ZekCQIDGglm" data-all-label="YouTubeへ">
+                    <td class="col-target">諏訪ななか</td><td class="col-name">【すわわーぷ】諏訪ななかはキミとワープする</td><td class="col-date"><span class="date-normal" style="color: #666;">2026/07/28</span></td><td class="col-link"><a href="https://www.youtube.com/watch?v=Il4dx-uo-4U&list=PLBYsKLTtyN0_5LjOgvZqG1ZekCQIDGglm" target="_blank" class="link-button">YouTubeへ</a></td>
+                </tr>
+                <tr class="radio-row" data-is-free="true" data-free-url="https://radiko.jp/r_seasons/10032649" data-free-label="radikoへ" data-all-url="https://radiko.jp/r_seasons/10032649" data-all-label="radikoへ">
+                    <td class="col-target">小宮有紗</td><td class="col-name">小宮有紗のそんな日もありさ</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/17</span></td><td class="col-link"><a href="https://radiko.jp/r_seasons/10032649" target="_blank" class="link-button">radikoへ</a></td>
+                </tr>
+                <tr class="radio-row" data-is-free="true" data-free-url="https://radiko.jp/r_seasons/10012918" data-free-label="radikoへ" data-all-url="https://radiko.jp/r_seasons/10012918" data-all-label="radikoへ">
+                    <td class="col-target">斉藤朱夏</td><td class="col-name">斉藤朱夏 しゅかラジ!を聴く</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/19</span></td><td class="col-link"><a href="https://radiko.jp/r_seasons/10012918" target="_blank" class="link-button">radikoへ</a></td>
+                </tr>
+                <tr class="radio-row" data-is-free="true" data-free-url="https://radiko.jp/r_seasons/10027725" data-free-label="radikoへ" data-all-url="https://radiko.jp/r_seasons/10027725" data-all-label="radikoへ">
+                    <td class="col-target">高槻かなこ</td><td class="col-name">高槻かなこと福田幹大のピピピコネクト</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/18</span></td><td class="col-link"><a href="https://radiko.jp/r_seasons/10027725" target="_blank" class="link-button">radikoへ</a></td>
+                </tr>
+                <tr class="radio-row" data-is-free="true" data-free-url="https://www.onsen.ag/program/ring" data-free-label="音泉へ" data-all-url="https://www.onsen.ag/program/ring" data-all-label="音泉へ">
+                    <td class="col-target">鈴木愛奈</td><td class="col-name">鈴木愛奈のring A radio</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/17</span></td><td class="col-link"><a href="https://www.onsen.ag/program/ring" target="_blank" class="link-button">音泉へ</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="category-section" data-cat="イキヅライブ！">
+            <h2>イキヅライブ！</h2>
+            <table class="data-table radio-data-table">
+                <thead>
+                    <tr><th class="col-target">対象</th><th class="col-name">番組名</th><th class="col-date">最終更新日</th><th class="col-link">リンク</th></tr>
+                </thead>
+                <tbody>
+                <tr class="radio-row" data-is-free="true" data-free-url="https://qlover.jp/enrina" data-free-label="QloveRへ" data-all-url="https://qlover.jp/enrina" data-all-label="QloveRへ">
+                    <td class="col-target">遠藤璃菜</td><td class="col-name">遠藤璃菜のちょっと寄り道してく？</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/15</span></td><td class="col-link"><a href="https://qlover.jp/enrina" target="_blank" class="link-button">QloveRへ</a></td>
+                </tr>
+                <tr class="radio-row" data-is-free="false" data-free-url="" data-free-label="" data-all-url="https://audee-membership.jp/podcastsms-special/articles/news/arPMc8LDTbvG26CJiyNJ97VD" data-all-label="AuDeeへ">
+                    <td class="col-target">坂野愛羽</td><td class="col-name">ポッドキャストメンバーシップSPECIAL 【坂野愛羽 （初代）スーパーシャケタイム】</td><td class="col-date"><span class="date-normal" style="color: #666;">2026/06/15</span></td><td class="col-link"><a href="https://audee-membership.jp/podcastsms-special/articles/news/arPMc8LDTbvG26CJiyNJ97VD" target="_blank" class="link-button">AuDeeへ</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="category-section" data-cat="22/7">
+            <h2>22/7</h2>
+            <table class="data-table radio-data-table">
+                <thead>
+                    <tr><th class="col-target">対象</th><th class="col-name">番組名</th><th class="col-date">最終更新日</th><th class="col-link">リンク</th></tr>
+                </thead>
+                <tbody>
+                <tr class="radio-row" data-is-free="true" data-free-url="https://radiko.jp/r_seasons/10030631" data-free-label="radikoへ" data-all-url="https://radiko.jp/r_seasons/10030631" data-all-label="radikoへ">
+                    <td class="col-target">河瀬詩</td><td class="col-name">河瀬詩の泡沫らじお-UTAKATA RADIO-</td><td class="col-date"><span class="date-recent" style="color: #e53935; font-weight: bold;">2026/08/15</span></td><td class="col-link"><a href="https://radiko.jp/r_seasons/10030631" target="_blank" class="link-button">radikoへ</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 個別番組タブ -->
+    <div id="tab-program" class="tab-pane">
+        <h2>グループ・ユニット</h2>
+        <table class="data-table">
+            <thead><tr><th class="col-target">対象</th><th class="col-name">番組名</th><th class="col-link">リンク</th></tr></thead>
             <tbody>
-                <tr>
-                    <td class="col-target">Liella!</td>
-                    <td class="col-program">ラブライブ！スーパースター!! Liella!ラジオ</td>
-                    <td class="col-link"><a href="https://www.youtube.com/playlist?list=PLYpy4kJmEo77cXVsDfzQ6g0ON9WYm4KuA" target="_blank" class="link-button">YouTubeへ</a></td>
-                </tr>
-                <tr>
-                    <td class="col-target">Liella!</td>
-                    <td class="col-program">ラブライブ！スーパースター!! Liella!のスパスタラジオ</td>
-                    <td class="col-link"><a href="https://www.joqr.co.jp/qr/program/spasta/" target="_blank" class="link-button">番組HPへ</a></td>
-                </tr>
-                <tr>
-                    <td class="col-target">蓮ノ空</td>
-                    <td class="col-program">きまっし!!みらぱ！の部屋ラジオ</td>
-                    <td class="col-link"><a href="https://www.youtube.com/playlist?list=PLu7E7HFun3xCnJmVYde_I89F4bSZVd6iM" target="_blank" class="link-button">YouTubeへ</a></td>
-                </tr>
-                <tr>
-                    <td class="col-target">AiScream</td>
-                    <td class="col-program">AiScReamのとろけるタイム♡♡♡</td>
-                    <td class="col-link"><a href="https://podcast.1242.com/asr/" target="_blank" class="link-button">ポッドキャストへ</a></td>
-                </tr>
-                <tr>
-                    <td class="col-target">イキヅライブ!</td>
-                    <td class="col-program">知らんらんらじお！</td>
-                    <td class="col-link"><a href="https://www.youtube.com/playlist?list=PL-3jtV2TsyS2gtdveKjU8t3Isyp4aZMqT" target="_blank" class="link-button">YouTubeへ</a></td>
-                </tr>
-                <tr>
-                    <td class="col-target">Aqours</td>
-                    <td class="col-program">Aqours浦の星女学院RADIO!!!</td>
-                    <td class="col-link"><a href="https://www.onsen.ag/program/llss/" target="_blank" class="link-button">音泉へ</a></td>
-                </tr>
+                <tr><td class="col-target">Liella!</td><td class="col-name">ラブライブ！スーパースター!! Liella!生放送</td><td class="col-link"><a href="https://www.youtube.com/@lovelive_series" target="_blank" class="link-button">YouTubeへ</a></td></tr>
+                <tr><td class="col-target">蓮ノ空</td><td class="col-name">🌸せーので！はすのそら！Plus</td><td class="col-link"><a href="https://www.youtube.com/@lovelive_hasu/videos" target="_blank" class="link-button">YouTubeへ</a></td></tr>
+                <tr><td class="col-target">蓮ノ空</td><td class="col-name">🌸メンバーシップ限定動画</td><td class="col-link"><a href="https://www.youtube.com/@lovelive_hasu" target="_blank" class="link-button">YouTubeへ</a></td></tr>
+                <tr><td class="col-target">イキヅライブ!</td><td class="col-name">いきづらい部！キャスト生配信</td><td class="col-link"><a href="https://www.youtube.com/@IKIZULIVE/streams" target="_blank" class="link-button">YouTubeへ</a></td></tr>
+            </tbody>
+        </table>
+        <h2>Liella!</h2>
+        <table class="data-table">
+            <thead><tr><th class="col-target">対象</th><th class="col-name">番組名</th><th class="col-link">リンク</th></tr></thead>
+            <tbody>
+                <tr><td class="col-target">伊達さゆり</td><td class="col-name">伊達さゆりのあと8cmは伸ばせます！</td><td class="col-link"><a href="https://nicochannel.jp/dateno8noba" target="_blank" class="link-button">ニコ生へ</a></td></tr>
+                <tr><td class="col-target">ペイトン尚未</td><td class="col-name">ペイトン尚未の「クリエイト倶楽部」</td><td class="col-link"><a href="https://nicochannel.jp/paytoncreate" target="_blank" class="link-button">ニコ生へ</a></td></tr>
+                <tr><td class="col-target">青山なぎさ</td><td class="col-name">青山なぎさの勝手にIMO協会</td><td class="col-link"><a href="https://nicochannel.jp/nagisaaoyamaoimo" target="_blank" class="link-button">ニコ生へ</a></td></tr>
+                <tr><td class="col-target">鈴原希実</td><td class="col-name">鈴原希実のわたしの人生、のんフィクション。</td><td class="col-link"><a href="https://ch.nicovideo.jp/nozomisuzuhara" target="_blank" class="link-button">ニコニコへ</a></td></tr>
+                <tr><td class="col-target">大熊和奏</td><td class="col-name">大熊和奏のベアーズビーアンビシャス</td><td class="col-link"><a href="https://ch.nicovideo.jp/wakana-ambitious" target="_blank" class="link-button">ニコニコへ</a></td></tr>
+                <tr><td class="col-target">絵森彩</td><td class="col-name">絵森彩のエモリアルCafe</td><td class="col-link"><a href="https://nicochannel.jp/emoriaya" target="_blank" class="link-button">ニコ生へ</a></td></tr>
+            </tbody>
+        </table>
+        <h2>蓮ノ空</h2>
+        <table class="data-table">
+            <thead><tr><th class="col-target">対象</th><th class="col-name">番組名</th><th class="col-link">リンク</th></tr></thead>
+            <tbody>
+                <tr><td class="col-target">野中ここな</td><td class="col-name">野中ここなのREC中！</td><td class="col-link"><a href="https://nicochannel.jp/nonaka-cocona/" target="_blank" class="link-button">ニコ生へ</a></td></tr>
+                <tr><td class="col-target">野中ここな</td><td class="col-name">野中ここなのぴこぴこ部屋ここなんです！</td><td class="col-link"><a href="https://www.mellow-fan.com/user/nonakapikopiko" target="_blank" class="link-button">OPENRECへ</a></td></tr>
+                <tr><td class="col-target">菅叶和</td><td class="col-name">菅叶和のカンがえるな、カンじろ！～Don't Think. Feel～</td><td class="col-link"><a href="https://nicochannel.jp/kan-kanna/" target="_blank" class="link-button">ニコ生へ</a></td></tr>
+                <tr><td class="col-target">月音こな</td><td class="col-name">月音こなのまだ本気出してないだけだから！</td><td class="col-link"><a href="https://nicochannel.jp/tsukine-kona/" target="_blank" class="link-button">ニコ生へ</a></td></tr>
+                <tr><td class="col-target">櫻井陽菜</td><td class="col-name">櫻井陽菜のひなぷちーの</td><td class="col-link"><a href="https://nicochannel.jp/hinappuccino" target="_blank" class="link-button">ニコ生へ</a></td></tr>
+                <tr><td class="col-target">三宅美羽</td><td class="col-name">三宅美羽先生はたぬきでした。</td><td class="col-link"><a href="https://nicochannel.jp/miitanu2525/" target="_blank" class="link-button">ニコ生へ</a></td></tr>
+                <tr><td class="col-target">進藤あまね</td><td class="col-name">進藤あまねの「あまね部！」</td><td class="col-link"><a href="https://nicochannel.jp/amanebu2525/" target="_blank" class="link-button">ニコ生へ</a></td></tr>
+            </tbody>
+        </table>
+        <h2>Aqours</h2>
+        <table class="data-table">
+            <thead><tr><th class="col-target">対象</th><th class="col-name">番組名</th><th class="col-link">リンク</th></tr></thead>
+            <tbody>
+                <tr><td class="col-target">逢田梨香子</td><td class="col-name">逢田梨香子「逢いたい！」</td><td class="col-link"><a href="https://ch.nicovideo.jp/aida-rikako" target="_blank" class="link-button">ニコニコへ</a></td></tr>
+                <tr><td class="col-target">小林愛香</td><td class="col-name">小林愛香の「公開リハーサル」</td><td class="col-link"><a href="https://ch.nicovideo.jp/kobayashiaikanohamuriha" target="_blank" class="link-button">ニコニコへ</a></td></tr>
+            </tbody>
+        </table>
+        <h2>イキヅライブ！</h2>
+        <table class="data-table">
+            <thead><tr><th class="col-target">対象</th><th class="col-name">番組名</th><th class="col-link">リンク</th></tr></thead>
+            <tbody>
+                <tr><td class="col-target">宮野芹</td><td class="col-name">宮野芹のここだけのヒミツやで！</td><td class="col-link"><a href="https://ch.nicovideo.jp/onetone" target="_blank" class="link-button">ニコニコへ</a></td></tr>
+                <tr><td class="col-target">坂野愛羽</td><td class="col-name">坂野愛羽のしゃけなべいべー！</td><td class="col-link"><a href="https://nicochannel.jp/ai-shake/" target="_blank" class="link-button">ニコ生へ</a></td></tr>
+                <tr><td class="col-target">瀬古梨愛</td><td class="col-name">瀬古梨愛のリアクションは大きめで！</td><td class="col-link"><a href="https://nicochannel.jp/sekoria/" target="_blank" class="link-button">ニコ生へ</a></td></tr>
+                <tr><td class="col-target">小戸森穂花</td><td class="col-name">小戸森穂花のこととかそのほか</td><td class="col-link"><a href="https://nicochannel.jp/kotomorihonoka/" target="_blank" class="link-button">ニコ生へ</a></td></tr>
             </tbody>
         </table>
     </div>
 
-    <h2>👤 個人番組</h2>
-    <div class="table-container">
-        <table class="radio-table">
-            <thead>
-                <tr>
-                    <th class="col-target">キャスト</th>
-                    <th class="col-program">番組名</th>
-                    <th class="col-link">リンク</th>
-                </tr>
-            </thead>
+    <!-- ファンクラブタブ -->
+    <div id="tab-fanclub" class="tab-pane">
+        <h2>グループ・ユニット</h2>
+        <table class="data-table">
+            <thead><tr><th class="col-target">対象</th><th class="col-name">ファンクラブ名</th><th class="col-link">リンク</th></tr></thead>
             <tbody>
-                <tr>
-                    <td class="col-target">伊達さゆり</td>
-                    <td class="col-program">伊達さゆりの 伊達にラジオやってません！！！</td>
-                    <td class="col-link"><a href="https://www.youtube.com/playlist?list=PLlP-aKKe1ZXNhMTLvr7rv18piYjvPCi8w" target="_blank" class="link-button">YouTubeへ</a></td>
-                </tr>
-                <tr>
-                    <td class="col-target">鈴原希実</td>
-                    <td class="col-program">鈴原希実の明日はなんしちょっと？</td>
-                    <td class="col-link"><a href="https://www.youtube.com/playlist?list=PLlP-aKKe1ZXO_YgXz6dn0gO3P38lN6HIs" target="_blank" class="link-button">YouTubeへ</a></td>
-                </tr>
-                <tr>
-                    <td class="col-target">楡井希実</td>
-                    <td class="col-program">にれ日和THEATER</td>
-                    <td class="col-link"><a href="https://fcchannel.re-tapirs.com/fc_channel/nirebiyori/?mode=movie" target="_blank" class="link-button">チャンネルへ</a></td>
-                </tr>
-                <tr>
-                    <td class="col-target">河瀬詩</td>
-                    <td class="col-program">河瀬詩の泡沫らじお-UTAKATA RADIO-</td>
-                    <td class="col-link"><a href="http://anitama.com/uta/" target="_blank" class="link-button">番組HPへ</a></td>
-                </tr>
-                <tr>
-                    <td class="col-target">薮島朱音</td>
-                    <td class="col-program">薮島朱音の強くなるラジオ</td>
-                    <td class="col-link"><a href="https://www.youtube.com/@JOQR_EXTEND/videos" target="_blank" class="link-button">YouTubeへ</a></td>
-                </tr>
-                <tr>
-                    <td class="col-target">月音こな</td>
-                    <td class="col-program">月音こなのつきねびより</td>
-                    <td class="col-link"><a href="https://www.onsen.ag/program/kona" target="_blank" class="link-button">音泉へ</a></td>
-                </tr>
-                <tr>
-                    <td class="col-target">岬なこ</td>
-                    <td class="col-program">岬なこのそんなこんなこラジオ！</td>
-                    <td class="col-link"><a href="https://www.onsen.ag/program/nako" target="_blank" class="link-button">音泉へ</a></td>
-                </tr>
-                <tr>
-                    <td class="col-target">野中ここな</td>
-                    <td class="col-program">野中ここなのノナカの野望</td>
-                    <td class="col-link"><a href="https://radiko.jp/persons/63274" target="_blank" class="link-button">radikoへ</a></td>
-                </tr>
-                <tr>
-                    <td class="col-target">遠藤璃菜</td>
-                    <td class="col-program">遠藤璃菜のちょっと寄り道してく？</td>
-                    <td class="col-link"><a href="https://qlover.jp/enrina" target="_blank" class="link-button">QloveRへ</a></td>
-                </tr>
-                <tr>
-                    <td class="col-target">葉山風花</td>
-                    <td class="col-program">葉山風花のHappy Lucky!</td>
-                    <td class="col-link"><a href="https://radiko.jp/r_seasons/10029223" target="_blank" class="link-button">radikoへ</a></td>
-                </tr>
-                <tr>
-                    <td class="col-target">三宅美羽</td>
-                    <td class="col-program">三宅美羽のみみぺこ</td>
-                    <td class="col-link"><a href="https://www.joqr.co.jp/qr/program/mimipeco/" target="_blank" class="link-button">番組HPへ</a></td>
-                </tr>
-                <tr>
-                    <td class="col-target">櫻井陽菜</td>
-                    <td class="col-program">かのんとひなの成長日記</td>
-                    <td class="col-link"><a href="https://hibiki-radio.jp/description/khsn/detail" target="_blank" class="link-button">響 - HiBiKiへ</a></td>
-                </tr>
-                <tr>
-                    <td class="col-target">佐々木琴子</td>
-                    <td class="col-program">佐々木琴子のここだけのこと</td>
-                    <td class="col-link"><a href="https://www.onsen.ag/program/ktk" target="_blank" class="link-button">音泉へ</a></td>
-                </tr>
-                <tr>
-                    <td class="col-target">伊波杏樹</td>
-                    <td class="col-program">アッパレ伊波！1名様やってまーす</td>
-                    <td class="col-link"><a href="https://www.mbs1179.com/yaru/\" target="_blank" class="link-button">番組HPへ</a></td>
-                </tr>
-                <tr>
-                    <td class="col-target">諏訪ななか</td>
-                    <td class="col-program">【すわわーぷ】諏訪ななかはキミとワープする</td>
-                    <td class="col-link"><a href="https://www.youtube.com/watch?v=Il4dx-uo-4U&list=PLBYsKLTtyN0_5LjOgvZqG1ZekCQIDGglm" target="_blank" class="link-button">YouTubeへ</a></td>
-                </tr>
-                <tr>
-                    <td class="col-target">斉藤朱夏</td>
-                    <td class="col-program">斉藤朱夏 しゅかラジ!を聴く</td>
-                    <td class="col-link"><a href="https://radiko.jp/r_seasons/10012918" target="_blank" class="link-button">radikoへ</a></td>
-                </tr>
-                <tr>
-                    <td class="col-target">鈴木愛奈</td>
-                    <td class="col-program">鈴木愛奈のring A radio</td>
-                    <td class="col-link"><a href="https://www.onsen.ag/program/ring" target="_blank" class="link-button">音泉へ</a></td>
-                </tr>
-                <tr>
-                    <td class="col-target">新田恵海</td>
-                    <td class="col-program">新田恵海のえみゅーじっく♪ふらっぐ☆</td>
-                    <td class="col-link"><a href="https://hibiki-radio.jp/description/tsunradi/detail" target="_blank" class="link-button">響 - HiBiKiへ</a></td>
-                </tr>
-                <tr>
-                    <td class="col-target">南條愛乃</td>
-                    <td class="col-program">南條愛乃とおしゃべりな夜</td>
-                    <td class="col-link"><a href="https://radiko.jp/r_seasons/10030928" target="_blank" class="link-button">radikoへ</a></td>
-                </tr>
-                <tr>
-                    <td class="col-target">内田彩</td>
-                    <td class="col-program">うちださんのおうっちー</td>
-                    <td class="col-link"><a href="https://radiko.jp/r_seasons/10002758" target="_blank" class="link-button">radikoへ</a></td>
-                </tr>
-                <tr>
-                    <td class="col-target">小宮有紗</td>
-                    <td class="col-program">小宮有紗のそんな日もありさ</td>
-                    <td class="col-link"><a href="https://news.radiko.jp/article/station/INT/137349/" target="_blank" class="link-button">radikoへ</a></td>
-                </tr>
-                <tr>
-                    <td class="col-target">高槻かなこ</td>
-                    <td class="col-program">高槻かなこと福田幹大のピピピコネクト</td>
-                    <td class="col-link"><a href="https://radiko.jp/r_seasons/10027725" target="_blank" class="link-button">radikoへ</a></td>
-                </tr>
-                <tr>
-                    <td class="col-target">青山なぎさ</td>
-                    <td class="col-program">青山なぎさのさ！</td>
-                    <td class="col-link"><a href="https://www.onsen.ag/program/nagisa-sa" target="_blank" class="link-button">音泉へ</a></td>
-                </tr>
-                <tr>
-                    <td class="col-target">来栖りん</td>
-                    <td class="col-program">来栖りんの異議あり！</td>
-                    <td class="col-link"><a href="https://radiko.jp/r_seasons/52910" target="_blank" class="link-button">radikoへ</a></td>
-                </tr>
+                <tr><td class="col-target">Liella!</td><td class="col-name">Liella! CLUB</td><td class="col-link"><a href="http://lovelive-liellaclub.jp/" target="_blank" class="link-button">公式サイトへ</a></td></tr>
+            </tbody>
+        </table>
+        <h2>Liella!</h2>
+        <table class="data-table">
+            <thead><tr><th class="col-target">対象</th><th class="col-name">ファンクラブ名</th><th class="col-link">リンク</th></tr></thead>
+            <tbody>
+                <tr><td class="col-target">伊達さゆり</td><td class="col-name">Apollo Bay Cruiser</td><td class="col-link"><a href="https://apollobaycruiser.jp/" target="_blank" class="link-button">FCサイトへ</a></td></tr>
+                <tr><td class="col-target">Liyuu</td><td class="col-name">YuU Koi Days</td><td class="col-link"><a href="https://liyuu0109.com/" target="_blank" class="link-button">FCサイトへ</a></td></tr>
+                <tr><td class="col-target">岬なこ</td><td class="col-name">となりになこ</td><td class="col-link"><a href="https://account.tonarininako.jp/" target="_blank" class="link-button">FCサイトへ</a></td></tr>
+                <tr><td class="col-target">ペイトン尚未</td><td class="col-name">SMA VOICE</td><td class="col-link"><a href="http://smavoice.jp/" target="_blank" class="link-button">FCサイトへ</a></td></tr>
+                <tr><td class="col-target">青山なぎさ</td><td class="col-name">NagiSalon</td><td class="col-link"><a href="https://aoyamanagisa.jp/" target="_blank" class="link-button">FCサイトへ</a></td></tr>
+                <tr><td class="col-target">鈴原希実</td><td class="col-name">Apollo Bay Cruiser</td><td class="col-link"><a href="https://apollobaycruiser.jp/" target="_blank" class="link-button">FCサイトへ</a></td></tr>
+                <tr><td class="col-target">大熊和奏</td><td class="col-name">ShakeRZ</td><td class="col-link"><a href="https://fanicon.net/fancommunities/5973" target="_blank" class="link-button">Faniconへ</a></td></tr>
+                <tr><td class="col-target">絵森彩</td><td class="col-name">絵森彩</td><td class="col-link"><a href="https://emori-aya.net/" target="_blank" class="link-button">FCサイトへ</a></td></tr>
+                <tr><td class="col-target">結那</td><td class="col-name">ゆいなかま</td><td class="col-link"><a href="https://yuina-fanclub.jp/" target="_blank" class="link-button">FCサイトへ</a></td></tr>
+                <tr><td class="col-target">坂倉花</td><td class="col-name">39Color</td><td class="col-link"><a href="https://subscription.app.c-rayon.com/app/sakakurasakura/home" target="_blank" class="link-button">公式アプリへ</a></td></tr>
+            </tbody>
+        </table>
+        <h2>蓮ノ空</h2>
+        <table class="data-table">
+            <thead><tr><th class="col-target">対象</th><th class="col-name">ファンクラブ名</th><th class="col-link">リンク</th></tr></thead>
+            <tbody>
+                <tr><td class="col-target">楡井希実</td><td class="col-name">にれ日和</td><td class="col-link"><a href="https://nirebiyori.com/" target="_blank" class="link-button">FCサイトへ</a></td></tr>
+                <tr><td class="col-target">佐々木琴子</td><td class="col-name">佐々木琴子 OFFICIAL FANCLUB</td><td class="col-link"><a href="https://sasakikotoko.com/" target="_blank" class="link-button">FCサイトへ</a></td></tr>
+                <tr><td class="col-target">菅叶和</td><td class="col-name">菅缶</td><td class="col-link"><a href="https://kancanfc.bitfan.id/" target="_blank" class="link-button">FCサイトへ</a></td></tr>
+                <tr><td class="col-target">月音こな</td><td class="col-name">Apollo Bay Cruiser</td><td class="col-link"><a href="https://apollobaycruiser.jp/" target="_blank" class="link-button">FCサイトへ</a></td></tr>
+                <tr><td class="col-target">櫻井陽菜</td><td class="col-name">Sakurarium</td><td class="col-link"><a href="https://hina-sakurai.com/" target="_blank" class="link-button">FCサイトへ</a></td></tr>
+                <tr><td class="col-target">来栖りん</td><td class="col-name">Cruise</td><td class="col-link"><a href="https://kurusurin-fc.bitfan.id/" target="_blank" class="link-button">FCサイトへ</a></td></tr>
+                <tr><td class="col-target">進藤あまね</td><td class="col-name">HiBiKi StYle＋</td><td class="col-link"><a href="https://hibikifan.com/shindou_amane" target="_blank" class="link-button">FCサイトへ</a></td></tr>
+            </tbody>
+        </table>
+        <h2>μ's</h2>
+        <table class="data-table">
+            <thead><tr><th class="col-target">対象</th><th class="col-name">ファンクラブ名</th><th class="col-link">リンク</th></tr></thead>
+            <tbody>
+                <tr><td class="col-target">新田恵海</td><td class="col-name">EmiRing</td><td class="col-link"><a href="https://emi-nitta.net/" target="_blank" class="link-button">FCサイトへ</a></td></tr>
+                <tr><td class="col-target">南條愛乃</td><td class="col-name">ごきんじょるの友の会</td><td class="col-link"><a href="https://www.gokinjolno.jp/" target="_blank" class="link-button">FCサイトへ</a></td></tr>
+                <tr><td class="col-target">内田彩</td><td class="col-name">内田彩 OFFICIAL WEBSITE</td><td class="col-link"><a href="https://aya-uchida.net/" target="_blank" class="link-button">公式サイトへ</a></td></tr>
+                <tr><td class="col-target">三森すずこ</td><td class="col-name">HiBiKi StYle＋</td><td class="col-link"><a href="https://mimorin.com/" target="_blank" class="link-button">公式サイトへ</a></td></tr>
+                <tr><td class="col-target">飯田里穂</td><td class="col-name">飯田里穂 OFFICIAL WEBSITE</td><td class="col-link"><a href="https://iida-riho.com/" target="_blank" class="link-button">公式サイトへ</a></td></tr>
+                <tr><td class="col-target">Pile</td><td class="col-name">Pile OFFICIAL WEBSITE</td><td class="col-link"><a href="https://pile.asia/" target="_blank" class="link-button">公式サイトへ</a></td></tr>
+                <tr><td class="col-target">楠田亜衣奈</td><td class="col-name">くすくすくっすん</td><td class="col-link"><a href="https://aina-kusuda.net/" target="_blank" class="link-button">FCサイトへ</a></td></tr>
+                <tr><td class="col-target">徳井青空</td><td class="col-name">ぐーもる荘</td><td class="col-link"><a href="https://note.com/tokinyan/n/n2127ca939f58" target="_blank" class="link-button">noteへ</a></td></tr>
+            </tbody>
+        </table>
+        <h2>Aqours</h2>
+        <table class="data-table">
+            <thead><tr><th class="col-target">対象</th><th class="col-name">ファンクラブ名</th><th class="col-link">リンク</th></tr></thead>
+            <tbody>
+                <tr><td class="col-target">伊波杏樹</td><td class="col-name">Inamin Town</td><td class="col-link"><a href="https://fc.inamintown.jp/" target="_blank" class="link-button">FCサイトへ</a></td></tr>
+                <tr><td class="col-target">逢田梨香子</td><td class="col-name">Us</td><td class="col-link"><a href="https://fc.rikakoaida.com/" target="_blank" class="link-button">FCサイトへ</a></td></tr>
+                <tr><td class="col-target">諏訪ななか</td><td class="col-name">7colors world</td><td class="col-link"><a href="https://suwananaka-fc.com/" target="_blank" class="link-button">FCサイトへ</a></td></tr>
+                <tr><td class="col-target">小宮有紗</td><td class="col-name">小宮有紗ファンクラブ</td><td class="col-link"><a href="https://komiya-arisa.net/" target="_blank" class="link-button">FCサイトへ</a></td></tr>
+                <tr><td class="col-target">斉藤朱夏</td><td class="col-name">en</td><td class="col-link"><a href="https://atashi-shuka.bitfan.id/" target="_blank" class="link-button">FCサイトへ</a></td></tr>
+                <tr><td class="col-target">小林愛香</td><td class="col-name">AND</td><td class="col-link"><a href="https://kobayashiaika.jp/" target="_blank" class="link-button">FCサイトへ</a></td></tr>
+                <tr><td class="col-target">高槻かなこ</td><td class="col-name">ネオたかつき王国</td><td class="col-link"><a href="https://axis-mgt.com/" target="_blank" class="link-button">FCサイトへ</a></td></tr>
+                <tr><td class="col-target">鈴木愛奈</td><td class="col-name">Ai catwalk</td><td class="col-link"><a href="https://suzukiaina.jp/" target="_blank" class="link-button">FCサイトへ</a></td></tr>
+                <tr><td class="col-target">降幡愛</td><td class="col-name">AI OPENER</td><td class="col-link"><a href="https://furihataai.jp/" target="_blank" class="link-button">FCサイトへ</a></td></tr>
+            </tbody>
+        </table>
+        <h2>イキヅライブ！</h2>
+        <table class="data-table">
+            <thead><tr><th class="col-target">対象</th><th class="col-name">ファンクラブ名</th><th class="col-link">リンク</th></tr></thead>
+            <tbody>
+                <tr><td class="col-target">宮野芹</td><td class="col-name">seloveri</td><td class="col-link"><a href="https://miyanoseri.com/" target="_blank" class="link-button">FCサイトへ</a></td></tr>
             </tbody>
         </table>
     </div>
 </div>
-
 </body>
 </html>
