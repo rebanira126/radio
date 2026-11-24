@@ -59,8 +59,6 @@
         .x-btn-row .link-button { padding: 8px 14px; }
         .x-btn-row.group .link-button { background-color: #4a90e2; }
         .x-btn-row.group .link-button:hover { background-color: #357abd; }
-        .x-embed { border: 1px solid #e0e0e0; border-radius: 8px; padding: 8px; background-color: #fafafa; }
-        .x-embed-fallback { display: block; padding: 20px; text-align: center; color: #888; font-size: 0.9em; }
     </style>
     <script>
         function openTab(evt, tabId) {
@@ -71,19 +69,6 @@
             var targetPane = document.getElementById(tabId);
             if (targetPane) { targetPane.classList.add("active"); }
             if (evt && evt.currentTarget) { evt.currentTarget.classList.add("active"); }
-            if (tabId === "tab-x") { loadXWidget(); }
-        }
-
-        // Xの埋め込みは、Xタブを開いたときにだけ読み込む（ほかのタブの表示を重くしないため）
-        var xWidgetLoaded = false;
-        function loadXWidget() {
-            if (xWidgetLoaded) { return; }
-            xWidgetLoaded = true;
-            var s = document.createElement("script");
-            s.src = "https://platform.twitter.com/widgets.js";
-            s.async = true;
-            s.charset = "utf-8";
-            document.body.appendChild(s);
         }
 
         function toggleFreeRadio(isFreeOnly) {
@@ -673,12 +658,6 @@
             <a href="https://x.com/search?q=list%3A1338346505376202753%20filter%3Amedia%20-filter%3Areplies&amp;f=live" target="_blank" rel="noopener" class="link-button">Liella!</a>
             <a href="https://x.com/search?q=list%3A1624080353811140609%20filter%3Amedia%20-filter%3Areplies&amp;f=live" target="_blank" rel="noopener" class="link-button">蓮ノ空</a>
             <a href="https://x.com/search?q=list%3A1922193799826309312%20filter%3Amedia%20-filter%3Areplies&amp;f=live" target="_blank" rel="noopener" class="link-button">イキヅライブ！</a>
-        </div>
-
-        <h2>ラブライブキャスト タイムライン</h2>
-        <p class="x-note">リスト「ラブライブキャスト」の最新投稿です（写真なしの投稿も含みます）。</p>
-        <div class="x-embed">
-            <a class="twitter-timeline" data-lang="ja" data-height="800" data-dnt="true" href="https://twitter.com/i/lists/2125056619910509009"><span class="x-embed-fallback">タイムラインを読み込み中…表示されない場合はこちらからXで開いてください</span></a>
         </div>
     </div>
 </div>
